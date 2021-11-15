@@ -59,6 +59,9 @@ indiquant quel paquet l’a installée. <br/>
 which -a ls | xargs dpkg -S 2> /dev/null <br/> 
 On utilise xargs car la commande dpkg ne peut pas récupéré en entrée les donnée de sortie de la commande précédente. Car cette commande entre des valeurs en paramètres uniquement. -S lance une recherche sur les paquets installés. 2> /dev/null redirige les erreurs dans ce répertoire qui est un répertoire de suppression. <br/> 
 `Résultat :`  coreutils: /bin/ls <br/> 
-Script origine-commande <br/> 
-#!/bin/bash echo $(which -a $1 | xargs dpkg -S 2> /dev/null) <br/>
-puis on tape bash origine-commande <br/>
+`Script origine-commande :` <br/> 
+#!/bin/bash 
+
+echo $(which -a $1 | xargs dpkg -S 2> /dev/null) <br/>
+
+puis on tape sudo chmod 755 ./origine-commande  et sudo ./origine-commande ls<br/>
