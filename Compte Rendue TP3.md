@@ -43,15 +43,22 @@ pour voir a quoi ils servent : `apt show Glances`  <br/>
 `tldr` est une alternative au man mais dirigé par la communautée<br/> 
 `hollywood` permet de simuler une fenêtre de hacking comme au cinéma, sur Ubuntu. ...  <br/> 
 sudo apt install Glances tldr hollywood 
-
-8. Quels paquets proposent de jouer au sudoku?
+ 
+8. Quels paquets proposent de jouer au sudoku? <br/> 
 N’installez pas le paquet gnome-sudoku ou ksudoku sous peine de devoir probablement réinstaller
-votre VM
+votre VM  <br/> 
 `gnome-sudoku` ou `ksudoku`
 
 ## Exercice 2.
 A partir de quel paquet est installée la commande ls ? Comment obtenir cette information en une
 seule commande, pour n’importe quel programme? Utilisez la réponse à cette question pour écrire un
 script appelé origine-commande (sans l’extension .sh) prenant en argument le nom d’une commande, et
-indiquant quel paquet l’a installée.
+indiquant quel paquet l’a installée. <br/> 
 
+
+which -a ls | xargs dpkg -S 2> /dev/null <br/> 
+On utilise xargs car la commande dpkg ne peut pas récupéré en entrée les donnée de sortie de la commande précédente. Car cette commande entre des valeurs en paramètres uniquement. -S lance une recherche sur les paquets installés. 2> /dev/null redirige les erreurs dans ce répertoire qui est un répertoire de suppression. <br/> 
+`Résultat :`  coreutils: /bin/ls <br/> 
+Script origine-commande <br/> 
+#!/bin/bash echo $(which -a $1 | xargs dpkg -S 2> /dev/null) <br/>
+puis on tape bash origine-commande <br/>
