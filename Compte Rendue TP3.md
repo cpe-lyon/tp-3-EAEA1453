@@ -7,27 +7,51 @@
 
 2. Créez un alias “maj” de la ou des commande(s) de la question précédente. Où faut-il enregistrer cet alias pour qu’il ne soit pas perdu au prochain redémarrage? <br/> 
 `commande : alias maj ='sudo apt update && sudo apt upgrade && sudo apt dist-upgrade'` <br/> 
- `il faut ensuite la mettre a la fin du fichier .bashrc (pour que ce soit sauvegradé): `
+ `il faut ensuite la mettre a la fin du fichier .bashrc (pour que ce soit sauvegradé) et taper source bashrc (pour mettre a jour le bashrc) `
 
 3. Utilisez le fichier /var/log/dpkg.log pour obtenir les 5 derniers paquets installés sur votre machine.<br/> 
-`Avec la commande : tail -n5 /var/log/dpkg.log'` <br/> 
-`Resultat :` <br/> 
-2021-10-25 08:27:54 status half-configured openssl:amd64 1.1.1f-1ubuntu2.8 <br/> 
-2021-10-25 08:27:54 status installed openssl:amd64 1.1.1f-1ubuntu2.8 <br/> 
-2021-10-25 08:27:54 trigproc man-db:amd64 2.9.1-1 <br/> 
-2021-10-25 08:27:54 status half-configured man-db:amd64 2.9.1-1 <br/> 
-2021-10-25 08:27:57 status installed man-db:amd64 2.9.1-1<br/> 
+`Avec la commande : grep installed /var/log/dpkg.log | tail -n5 | cut -d' ' -f5 | cut -d: -f1` <br/> 
 
 4. Listez les derniers paquets qui ont été installés explicitement avec la commande apt install <br/> 
-`Avec la commande : tail -n5 /var/log/dpkg.log'  ` <br/> 
-
+`Avec la commande : grep "apt install" /var/log/apt/history.log | cut -d' ' -f4` 
+ <br/> 
 
 
 5. Utilisez les commandes dpkg et apt pour compter de deux manières différentes le nombre de total de
 paquets installés sur la machine (ne pas hésiter à consulter le manuel!). Comment explique-t-on la
-(petite) différence de comptage? Pourquoi ne peut-on pas utiliser directement le fichier dpkg.log ?
-6. Combien de paquets sont disponibles en téléchargement sur les dépôts Ubuntu?
-7. A quoi servent les paquets glances, tldr et hollywood ? Installez-les et testez-les.
+(petite) différence de comptage ? Pourquoi ne peut-on pas utiliser directement le fichier dpkg.log ?  <br/> 
+`dpkg : ` Il faut se déplacer dans le dossier /var/log avec la commande :
+cd /var/log  <br/> 
+Ensuite on vérifie le nombre de paquets présent dans le fichier dpkg.log en utilisant dpkg : <br/> 
+`dpkg -l | grep "^ii" | wc -l`  <br/> 
+le grep "^ii" permet de sélectionner seulement les lignes qui commence par "ii"  <br/> 
+Le résultat est 595.  <br/> 
+`apt : ` Il faut se déplacer dans le dossier /var/log/apt avec la commande :
+cd /var/log  <br/> 
+Ensuite on vérifie le nombre de paquets présent dans le fichier dpkg.log en utilisant apt :  <br/> 
+`apt list --installed | wc -l`   <br/> 
+Le résultat est 596 car il y a seulement une ligne en plus.  <br/> 
+
+
+6. Combien de paquets sont disponibles en téléchargement sur les dépôts Ubuntu ? <br/> 
+67 506 paquets sont disponibles en téléchargements. On obtient cela avec la comande : . <br/> 
+`apt list | wc -l` <br/> 
+
+7. A quoi servent les paquets glances, tldr et hollywood ? Installez-les et testez-les.  <br/> 
+pour voir a quoi ils servent : `apt show Glances`  <br/> 
+`Glances` est une application en mode caractère (ligne de commande) qui permet d'afficher l'état des principales ressources d'un système, de sa charge et du fonctionnement des applications <br/> 
+`tldr` est une alternative au man mais dirigé par la communautée<br/> 
+`hollywood` permet de simuler une fenêtre de hacking comme au cinéma, sur Ubuntu. ...  <br/> 
+sudo apt install Glances tldr hollywood 
+
 8. Quels paquets proposent de jouer au sudoku?
 N’installez pas le paquet gnome-sudoku ou ksudoku sous peine de devoir probablement réinstaller
 votre VM
+`gnome-sudoku` ou `ksudoku`
+
+## Exercice 2.
+A partir de quel paquet est installée la commande ls ? Comment obtenir cette information en une
+seule commande, pour n’importe quel programme? Utilisez la réponse à cette question pour écrire un
+script appelé origine-commande (sans l’extension .sh) prenant en argument le nom d’une commande, et
+indiquant quel paquet l’a installée.
+
