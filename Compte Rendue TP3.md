@@ -76,7 +76,7 @@ spécifié dans cette commande. <br>
 ``` bash
 #!/bin/bash
 
-(dpkg -l $1 | grep $1) && echo "installé" || echo "NON installé"
+(apt list --installed | grep $1) && echo "installé" || echo "NON installé"
 ``` 
 
 `résultat avec hollywood : `<br>
@@ -88,6 +88,32 @@ installé <br>
 Lister les programmes livrés avec coreutils. En particulier, on remarque que l’un deux se nomme [. De
 quoi s’agit-il ?
 
+`Pour voir les programmes livrés avec coreutils : dpkg -L coreutils `<br>
 
-`Pour voir les programmes livrés avec coreutils : apt show coreutils `<br>
+`Résultat :` <br>
+...
+/bin/mktemp
+/bin/mv
+/bin/pwd
+/bin/readlink
+/bin/rm
+/bin/rmdir
+/bin/sleep
+/bin/stty
+/bin/sync
+/bin/touch
+/bin/true
+/bin/uname
+/bin/vdir
+/usr
+/usr/bin
+/usr/bin/[
+/usr/bin/arch
+/usr/bin/b2sum
+/usr/bin/base32
+/usr/bin/base64
+/usr/bin/basename
+/usr/bin/chcon
+...
 
+`le programme [ est un equivalent de la commande test, il est generalement utilisé dans les conditions comme if [ ... ]`
