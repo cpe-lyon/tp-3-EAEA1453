@@ -55,13 +55,39 @@ seule commande, pour n’importe quel programme? Utilisez la réponse à cette q
 script appelé origine-commande (sans l’extension .sh) prenant en argument le nom d’une commande, et
 indiquant quel paquet l’a installée. <br/> 
 
+`which -a ls | xargs dpkg -S` <br/> 
+`coreutils: /bin/ls ` <br/>
 
-which -a ls | xargs dpkg -S 2> /dev/null <br/> 
-On utilise xargs car la commande dpkg ne peut pas récupéré en entrée les donnée de sortie de la commande précédente. Car cette commande entre des valeurs en paramètres uniquement. -S lance une recherche sur les paquets installés. 2> /dev/null redirige les erreurs dans ce répertoire qui est un répertoire de suppression. <br/> 
-`Résultat :`  coreutils: /bin/ls <br/> 
 `Script origine-commande :` <br/> 
+``` bash
 #!/bin/bash 
 
-echo $(which -a $1 | xargs dpkg -S 2> /dev/null) <br/>
+echo $(which -a $1 | xargs dpkg -S 2> /dev/null) ` <br/>
+```
 
-puis on tape sudo chmod 755 ./origine-commande  et sudo ./origine-commande ls<br/>
+`on tape : bash origine-commande lacommande` <br/>
+
+
+## Exercice 3.
+Ecrire une commande qui affiche “INSTALLÉ” ou “NON INSTALLÉ” selon le nom et le statut du package
+spécifié dans cette commande. <br>
+
+`script verif_install : ` <br>
+``` bash
+#!/bin/bash
+
+(dpkg -l $1 | grep $1) && echo "installé" || echo "NON installé"
+``` 
+
+`résultat avec hollywood : `<br>
+ii  hollywood      1.20-1       all          fill your console with Hollywood melodrama technobabble <br>
+installé <br>
+
+
+## Exercice 4.
+Lister les programmes livrés avec coreutils. En particulier, on remarque que l’un deux se nomme [. De
+quoi s’agit-il ?
+
+
+`Pour voir les programmes livrés avec coreutils : apt show coreutils `<br>
+
