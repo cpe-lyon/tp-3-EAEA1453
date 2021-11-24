@@ -134,3 +134,25 @@ personnel” ou PPA.
 
 `Contenue :` deb http://ppa.launchpad.net/linuxuprising/java/ubuntu focal main <br>
 #deb-src http://ppa.launchpad.net/linuxuprising/java/ubuntu focal main
+
+## Exercice 7 Installation d’un logiciel à partir du code source
+
+`installation en local :` <br>
+`sudo apt install make`<br>
+`sudo apt install pkg-config` <br>
+`sudo apt install gcc` <br>
+`make install PREFIX=~/.tiblouk` <br> <br> <br>
+
+`installation checkinstall :  sudo apt install checkinstall`
+<br><br>
+`apres avoir taper sudo checkinstall dans le répertoire cbonsai : ` <br>
+checkinstall 1.6.3, Copyright 2010 Felipe Eduardo Sanchez Diaz Duran
+           This software is released under the GNU GPL.
+
+
+The package documentation directory ./doc-pak does not exist.
+Should I create a default set of package docs?  [y]: y
+
+...
+<br><br>
+`Je peux maintenant lancer cbonsai de n'importe ou`
