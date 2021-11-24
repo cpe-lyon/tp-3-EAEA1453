@@ -117,3 +117,20 @@ quoi s’agit-il ?
 ...
 
 `le programme [ est un equivalent de la commande test, il est generalement utilisé dans les conditions comme if [ ... ]`
+
+## Exercice 5. aptitude
+
+`emacs est un éditeur de texte complet`
+
+`Lynx est un client World Wide Web (WWW) complet`
+
+## Exercice 6. Installation d’un paquet par PPA
+
+Certains logiciels ne figurent pas dans les dépôts officiels. C’est le cas par exemple de la version ”officielle”
+de Java depuis qu’elle est développée par Oracle. Dans ces cas, on peut parfois se tourner vers un ”dépôt
+personnel” ou PPA.
+
+`Dans le répértoire /etc/apt/sources.list.d$ se trouve le fichier tiblouk@abletteserver:/etc/apt/sources.list.d$` <br>
+
+`Contenue :` deb http://ppa.launchpad.net/linuxuprising/java/ubuntu focal main <br>
+#deb-src http://ppa.launchpad.net/linuxuprising/java/ubuntu focal main
