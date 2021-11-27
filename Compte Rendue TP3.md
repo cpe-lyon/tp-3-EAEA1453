@@ -156,3 +156,7 @@ Should I create a default set of package docs?  [y]: y
 ...
 <br><br>
 `Je peux maintenant lancer cbonsai de n'importe ou`
+
+
+## Exercice 8. Création de dépôt personnalisé
+
